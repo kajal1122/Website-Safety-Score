@@ -25,12 +25,15 @@ def search_url(url):
     if rows != None:
         for row in rows:
             print(row)
-    score = rows[1]
+    #score = rows[1]
 
 
     conn.close()
 
-    return rows
+    if(rows != None):
+        return rows
+    else:
+        return None
 
 
 

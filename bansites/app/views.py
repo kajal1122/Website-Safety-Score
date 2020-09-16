@@ -4,6 +4,7 @@ from .models import SiteModel
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .url_search import search_url
+from .site_scrapping import site_scrapping
 #from .serializer import SiteSerializer
 
 
@@ -24,8 +25,19 @@ class SiteSearchAPIView(APIView):
         url_get = param['url']
         #print(url)
         result= search_url(url_get)
-        data={};
-        data['url'] = result[0]
-        data['score'] = result[1]
-        return Response(data)
+        if result == None:
+            score = site_scrapping(url_get)
+            data={}
+            data['url'] = url_get
+            data['score']=score
+            return Response(data)
+
+
+        else:
+            data={};
+            data['url'] = result[0]
+            data['score'] = result[1]
+            return Response(data)
+
+
         # abhi kuch reteurn nhi krte hai.
