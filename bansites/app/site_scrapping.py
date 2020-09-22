@@ -5,7 +5,7 @@ bad_words = {"sex":3,
 "intensifier":3,
 "kill":3,
 "murder":3,
-"terrible":2,
+
 "bastard":3,
 "illegitimate":3,
 "penis":3,
@@ -14,9 +14,6 @@ bad_words = {"sex":3,
 "vagina":3,
 "cunt":3,
 "testicles":3,
-"shit":2,
-"poop":1,
-"crap":2,
 "dumbass":3,
 "fucker":3,
 "witch":2,
@@ -35,15 +32,14 @@ bad_words = {"sex":3,
 "shithead":3,
 "slut":3,
 "die":3,
-"depression":3,
 "porn":3,
 "erotic":3,
 "drugs":3,
-"damn":2}
+}
 
 
 def site_scrapping(url):
-    html = urllib.request.urlopen(url).read()
+    html = urllib.request.urlopen(url,timeout=5).read()
     soup = BeautifulSoup(html, "html.parser")
     for script in soup(["script", "style"]):
         script.extract()
@@ -67,38 +63,3 @@ def site_scrapping(url):
         result=90
 
     return result
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #print(bad_words['drugs'])
-
-
-
-
-
-
-                #print('no')
-
-        #print(bad_words_in_site)
